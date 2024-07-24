@@ -2,31 +2,31 @@ spring:
   application:
     name: springboot-multiple-datasource
 
-  sql:
-    init:
-      mode: always
-
   mysql:
     datasource:
-      url: jdbc:mysql://localhost:3306/sb_mds_demo
       username: admin
       password: admin
       driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/sb_mds_demo
+      migration-location: classpath:/db/migration/mysql
   
   pg:
     datasource:
-      url: jdbc:postgresql://localhost:5432/sb_mds_demo
       username: admin
       password: admin
       driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://localhost:5432/sb_mds_demo
+      migration-location: classpath:/db/migration/postgres
   
   jpa:
     show-sql: true
-    generate-ddl: true
     open-in-view: false
 
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
       
     properties:
       '[hibernate.format_sql]': true
+
+  flyway:
+    enabled: false
